@@ -29,15 +29,15 @@ def is_number(s):
 def takeImages():
     if os.path.exists('sinif.txt'):
         f = open("sinif.txt", "r")
-        x=f.read()
+        sinif=f.read()
         f.close()
     else:
-        x=input("Sinif Giriniz (Ör: 11j ,10a) --> ")
+        sinif=input("Sinif Giriniz (Ör: 11j ,10a) --> ")
         f = open("sinif.txt", "a")
-        f.write(x)
+        f.write(sinif)
         f.close()
     try:
-        conn = mysql.connect(host='localhost', database=x, user='root', password='')
+        conn = mysql.connect(host='localhost', database=sinif, user='root', password='')
         if conn.is_connected():
             OgrenciNumara = input("Ogrenci Numarasi Giriniz: ")
             Isim = input("Isim Giriniz: ")

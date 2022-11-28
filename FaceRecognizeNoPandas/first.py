@@ -1,21 +1,7 @@
 import mysql.connector as mysql
 from mysql.connector import Error
 import os
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        pass
 
-    try:
-        import unicodedata
-        unicodedata.numeric(s)
-        return True
-    except (TypeError, ValueError):
-        pass
-
-    return False
     
 def range_char(start, stop):
     return (chr(n) for n in range(ord(start), ord(stop) + 1))
@@ -55,7 +41,19 @@ def setup():
             print("Giris Bilgileri Depolandi")
             conn.commit()
         #---------------------------------------------
+            try:
+                os.mkdir("TrainingImageLabel")
+            except:
+                print("Yoklama Klasoru Zaten Olusturulmus")
+            else:
+                print("Yoklama Klasoru Olusturuldu")
                 
+            try:
+                os.mkdir("TrainingImage")
+            except:
+                print("Yoklama Klasoru Zaten Olusturulmus")
+            else:
+                print("Yoklama Klasoru Olusturuldu")                  
             os.remove("key.lock")
             print("Sistem Klidi Acildi")
         #---------------------------------------------

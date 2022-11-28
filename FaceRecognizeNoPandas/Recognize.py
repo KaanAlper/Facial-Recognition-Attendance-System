@@ -20,15 +20,15 @@ def recognize_attendence():
     minH = 0.1 * cam.get(4)
     if os.path.exists('sinif.txt'):
         f = open("sinif.txt", "r")
-        x=f.read()
+        sinif=f.read()
         f.close()
     else:
-        x=input("Sinif Giriniz (Ör: 11j ,10a) --> ")
+        sinif=input("Sinif Giriniz (Ör: 11j ,10a) --> ")
         f = open("sinif.txt", "a")
-        f.write(x)
+        f.write(sinif)
         f.close()
     try:
-        conn = mysql.connect(host='localhost', database=x, user='root', password='')
+        conn = mysql.connect(host='localhost', database=sinif, user='root', password='')
         if conn.is_connected():     
             cursor = conn.cursor()
             cursor.execute("select database();")
@@ -60,6 +60,7 @@ def recognize_attendence():
                         ts = time.time()
                         Saat = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
                         sqldate=datetime.datetime.fromtimestamp(ts).strftime('%d_%m_%Y')
+                        Hour, Dakika, Saniye = Saat.split(":")
                         cursor.execute("CREATE TABLE IF NOT EXISTS yoklama_bilgileri_"+sqldate+"(ID int NOT NULL AUTO_INCREMENT, OgrenciNumara int(255),Isim varchar(255),Saat varchar(255),PRIMARY KEY (ID));")
                         cursor.execute("DELETE c1 FROM yoklama_bilgileri_"+sqldate+" c1 INNER JOIN yoklama_bilgileri_"+sqldate+" c2 WHERE c1.ID >= c2.ID AND c1.OgrenciNumara = c2.OgrenciNumara")
                         print("Table Olusturuldu....")
