@@ -5,7 +5,10 @@ import Train_Image
 import Recognize
 import yoklamasil
 import first
-
+import mysql.connector as mysql
+import time
+from mysql.connector import Error
+sifre_girildi=0
 def title_bar():
     os.system('cls') 
 
@@ -36,7 +39,34 @@ def anaMenu():
                 break
             if os.path.isfile("key.lock")==True:
                 print("Setup Calistirilmamis!!!")
-            
+                
+                
+            elif sifre_girildi==0:
+                try:
+                    conn = mysql.connect(host='localhost', user='root', password='',database='admin')
+                    if conn.is_connected():               
+                        cursor = conn.cursor()
+                        cursor.execute("SELECT * from giris")
+                        taninanOgrenci = cursor.fetchone()
+                        admin_kullanici_adi,admin_sifre = taninanOgrenci
+                except:
+                    print("Sifre ya da Kullanici Adi Duzgun Olusturulamamis, ya da MySQL Kapalidir\nLutfen Kontol Ediniz, Aksi Takdirde Kurucuya Haber Veriniz")
+                else:
+                    while sifre_girildi!=1:
+                        os.system('cls') 
+                        print("Giris Yapmak Icin Lutfen Kullanici Adi ve Sifrenizi Giriniz")
+                        kullanici_adi=input("Kullanici Adinizi Giriniz -->")
+                        sifre=input("Sifrenizi Giriniz -->")
+                        if kullanici_adi==admin_kullanici_adi and sifre==admin_sifre:
+                            print("Basariyla Giris Yapildi...")
+                            time.sleep(3)
+                            sifre_girildi=1
+                        
+                        else:
+                            print("Kullanici Adi veya Sifreniz Yanlis Lutfen Tekrar Deneyiniz...")
+                            ime.sleep(2)
+                    break
+                    
             elif secim == 1:
                 kameraKontrol()
                 break

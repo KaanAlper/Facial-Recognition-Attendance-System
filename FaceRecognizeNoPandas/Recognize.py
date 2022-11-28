@@ -43,10 +43,8 @@ def recognize_attendence():
                     OgrenciNumara, conf = recognizer.predict(gray[y:y+h, x:x+w])
 
                     if conf < 100:
-                        #MYSQL BAĞLANTISI EKLENCEK
                         cursor.execute("SELECT * from ogrenci_data WHERE OgrenciNumara ="+str(OgrenciNumara))
                         taninanOgrenci = cursor.fetchone()
-                        print(taninanOgrenci)
                         OgrenciNumara,Isim = taninanOgrenci
                         confstr = "  {0}%".format(round(100 - conf))
                         GorselIsim = str(OgrenciNumara)+"-"+Isim
