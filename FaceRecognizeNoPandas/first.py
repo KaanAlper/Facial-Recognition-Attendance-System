@@ -32,12 +32,12 @@ def setup():
                 for i in range(9, 13):
                     if(character=='J')or(character=='K'):
                         if(i==11):
-                            cursor.execute("CREATE DATABASE "+str(i)+character+";")
+                            cursor.execute("CREATE DATABASE IF NOT EXISTS "+str(i)+character+";")
                             
                         else:
                             continue
                     else:
-                        cursor.execute("CREATE DATABASE "+str(i)+character+";")
+                        cursor.execute("CREATE DATABASE IF NOT EXISTS "+str(i)+character+";")
                 
                 print("DATABASE Olusturuldu")
                

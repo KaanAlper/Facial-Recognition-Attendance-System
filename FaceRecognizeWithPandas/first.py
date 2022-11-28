@@ -2,6 +2,9 @@ import mysql.connector as mysql
 from mysql.connector import Error
 import os
 
+def range_char(start, stop):
+    return (chr(n) for n in range(ord(start), ord(stop) + 1))
+
 def setup():
     try:
         conn = mysql.connect(host='localhost', user='root', password='')
@@ -9,11 +12,17 @@ def setup():
             print("MySql'e Baglanildi")
             cursor = conn.cursor()
     #---------------------------------------------
-            try:
-                cursor.execute("CREATE DATABASE yoklamasistemi;")
-            except:
-                print("Database zaten mevcut!!!")
-            else:
+            for character in range_char("A", "K"):
+                for i in range(9, 13):
+                    if(character=='J')or(character=='K'):
+                        if(i==11):
+                            cursor.execute("CREATE DATABASE "+str(i)+character+";")
+                            
+                        else:
+                            continue
+                    else:
+                        cursor.execute("CREATE DATABASE "+str(i)+character+";")
+                
                 print("DATABASE Olusturuldu")
 
     #---------------------------------------------
