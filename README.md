@@ -13,6 +13,9 @@ This repository contains a **Facial Recognition Attendance System** that leverag
 - **User-friendly interface**
 - **Scalable and customizable**
 
+## App Variations
+ The mysql version we work with the most is the best version. Pandas also works well but needs adjustments and debugging. PyQT5 is still in developement and incomplete.
+ 
 ## Requirements
 <details>
 <summary>To run this project, ensure you have the following installed.</summary>
