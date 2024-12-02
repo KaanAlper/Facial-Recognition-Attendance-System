@@ -5,10 +5,13 @@ This repository contains a **Facial Recognition Attendance System** that leverag
 ## Features
 - **Real-time facial detection and recognition**
 - **MySQL database integration** for centralized attendance management
-- Class management: Easily organize students into classes
-- Attendance logging with timestamps
-- User-friendly interface
-- Scalable and customizable
+- **Class management**: Easily organize students into classes
+- **Daily, Monthly, and Term-Based Attendance Tracking**:
+  - Attendance data is stored in MySQL, allowing schools to track records by day, month, or academic term (semester).
+  - Supports efficient queries for generating reports based on time periods or class groups.
+- **Attendance logging with timestamps**
+- **User-friendly interface**
+- **Scalable and customizable**
 
 ## Requirements
 <details>
