@@ -44,6 +44,6 @@ This repository contains a **Facial Recognition Attendance System** that leverag
 </details>
   
 You can install the Python dependencies by just running:
-[FaceRecognizeNoPandas/requirements.txt](requirements.txt)
+[requirements.txt](FaceRecognizeNoPandas/requirements.txt)
 ```bash
 pip install -r requirements.txt
